@@ -24,16 +24,15 @@ rule squanti:
     output:
         directory("output/sqanti/{run}/{v}/{sample}_{tool}_sqanti/")
     params:
-        prefix="{sample}-{run}-vs-{tool}",
-        settings="--report both --skipORF",
-        path=config['sqanti_path']
+        prefix="{sample}-{run}-vs-{tool}"
+        #settings="--report both --skipORF"
     log:
         "log/sqanti/sqanti/{v}/{sample}.{run}.{tool}.sqanti.{v}.log"
     conda:
-        "SQANTI3.env"
+        "../scripts/sqanti3/SQANTI3.conda_env.yml"
     benchmark:
         "stats/sqanti/sqanti/{v}/{sample}.{run}.{tool}.sqanti.{v}.txt"
     shell:
         # "export PYTHONPATH=\$PYTHONPATH:/ebio/abt6/lvaness/software/cDNA_Cupcake/sequence && mkdir -p {output} && python3 {params.path} --report pdf --skipORF -o {params.prefix} --d {output} {input.isoforms} {input.annotation} {input.genome} > {log}"
-        "mkdir -p {output} && python3 {params.path} --report pdf --skipORF -o {params.prefix} --d {output} {input.isoforms} {input.annotation} {input.genome} > {log}"
+        "mkdir -p {output} && python3 scripts/sqanti3/sqanti3_qc.py --report pdf -o {params.prefix} --d {output} {input.isoforms} {input.annotation} {input.genome} > {log}"
 

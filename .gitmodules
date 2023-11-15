@@ -1,0 +1,3 @@
+[submodule "scripts/sqanti3"]
+	path = scripts/sqanti3
+	url = https://github.com/kdm9/SQANTI3.git

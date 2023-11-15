@@ -53,7 +53,7 @@ rule all:
         expand("output/isoform_generation/collapse_tama/{v}/{sample}.collapsed.tama.{v}_read_support.txt", sample=config["samples2map"], v=v),
         
         ### sqanti.smk
-        #expand("output/sqanti/{run}/{v}/{sample}_{tool}_sqanti/", sample=config["samples_sqanti"], v=v, run=["pb", "tama"], tool=["liftoff","augustus"]),
+        expand("output/sqanti/{run}/{v}/{sample}_{tool}_sqanti/", sample=config["samples_sqanti"], v=v, run=["pb", "tama"], tool=["liftoff","augustus"]),
         
         ### pasa.smk
         expand("output/pasa/{run}/{v}/{sample}_{tool}_pasa_{params}/compare1.done", sample=config["samples_pasa"], v=v, run=["tama"], params=config['pasa_set'], tool=["liftoff", "augustus"]),
