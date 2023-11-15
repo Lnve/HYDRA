@@ -9,7 +9,7 @@ rule sqanti_gff2gtf:
     log:
         "log/sqanti/gff2gtf/{v}/{sample}.{run}.gff2gtf.{v}.log"
     conda:      
-        "SQANTI3.env"
+        "envs/isoseq.yml"
     benchmark:
         "stats/sqanti/gff2gtf/{v}/{sample}.{run}.gff2gtf.{v}.txt"
     shell:
@@ -34,4 +34,6 @@ rule squanti:
     benchmark:
         "stats/sqanti/sqanti/{v}/{sample}.{run}.{tool}.sqanti.{v}.txt"
     shell:
-        "export PYTHONPATH=\$PYTHONPATH:/ebio/abt6/lvaness/software/cDNA_Cupcake/sequence && mkdir -p {output} && python3 {params.path} --report pdf --skipORF -o {params.prefix} --d {output} {input.isoforms} {input.annotation} {input.genome} > {log}"
+        # "export PYTHONPATH=\$PYTHONPATH:/ebio/abt6/lvaness/software/cDNA_Cupcake/sequence && mkdir -p {output} && python3 {params.path} --report pdf --skipORF -o {params.prefix} --d {output} {input.isoforms} {input.annotation} {input.genome} > {log}"
+        "mkdir -p {output} && python3 {params.path} --report pdf --skipORF -o {params.prefix} --d {output} {input.isoforms} {input.annotation} {input.genome} > {log}"
+

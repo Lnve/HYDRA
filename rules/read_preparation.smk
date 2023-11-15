@@ -35,6 +35,10 @@ rule ccs:
 for idx, pool in enumerate(config['pools']):
     n2bc = config['name2bc'][idx]
     bcs = list(n2bc.values())
+    if "hifi_path" in config:
+        hifi=config["hifi_path"].format(pool=pool)
+    else:
+        hifi=f"output/read_preparation/ccs/{pool}/{pool}.hifi.bam"
     rule lima:
         """
         Demultiplex the pools and remove primers + barcodes (TO DO: do the
@@ -43,7 +47,7 @@ for idx, pool in enumerate(config['pools']):
         """
         name: f"lima_{pool}"
         input:
-            hifi=f"output/read_preparation/ccs/{pool}/{pool}.hifi.bam",
+            hifi=hifi,
             biosamples=config['biosamples'].format(pool=pool),
             barcodes=config['barcodes']
         output: 

@@ -56,7 +56,7 @@ rule all:
         #expand("output/sqanti/{run}/{v}/{sample}_{tool}_sqanti/", sample=config["samples_sqanti"], v=v, run=["pb", "tama"], tool=["liftoff","augustus"]),
         
         ### pasa.smk
-        expand("output/pasa/{run}/{v}/{sample}_{tool}_pasa_{params}/compare1.done", sample=config["samples_pasa"], v=v, run=["tama"], params=config['pasa_settings'], tool=["liftoff", "augustus"]),
+        expand("output/pasa/{run}/{v}/{sample}_{tool}_pasa_{params}/compare1.done", sample=config["samples_pasa"], v=v, run=["tama"], params=config['pasa_set'], tool=["liftoff", "augustus"]),
         
         ### Transdecoder
-        #expand("output/transdecoder/{run}/{v}/{sample}_transdecoder/{sample}_transcripts.fasta.transdecoder.genome.sorted.gff3", sample=config["samples_transdecoder"], v=v, run=["tama", "pb"]),
+        expand("output/transdecoder/{run}/{v}/{sample}_transdecoder/{sample}_transcripts.fasta.transdecoder.genome.sorted.gff3", sample=config["samples_transdecoder"], v=v, run=["tama", "pb"]),

@@ -81,6 +81,8 @@ biosamples : "input/meta/biosamp_{pool}.csv"
 
 ### CCS
 ccs_subreads : "input/subreads/{pool}.subreads.subset.bam"
+# to skip ccs, supply a hifi path to pre-ccs'd read'ds
+hifi_path: "input/hifi/{pool}.hifi.bam"
 ccs_threads : 64
 ccs_params : ""
 
@@ -109,14 +111,14 @@ tama_c : "-x capped -a 10 -m 0 -z 5 -i 99 -sj sj_priority -sjt 10 -lde 2"
 ########## SQANTI ##########
 #samples_sqanti: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883','at9900', 'col0']
 #samples_sqanti: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883','at9900']
-samples_sqanti: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883']
+samples_sqanti: ['at6923','at6929','at7143','at8285','at9104','at9336']
 sqanti_path: "/ebio/abt6/lvaness/software/SQANTI3-5.1/sqanti3_qc.py"
 
 ########## PASA ##########
 pasa_set: ['set1']
 #samples_pasa: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883','at9900', 'col0']
 #samples_pasa: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883','at9900']
-samples_pasa: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883']
+samples_pasa: ['at6923','at6929','at7143','at8285','at9104','at9336']
 
 ### PASA configs
 config_align: "input/pasa_conf/pasa.alignAssembly.Template.txt"
@@ -126,4 +128,4 @@ config_compare: "input/pasa_conf/pasa.annotationCompare.Template.txt"
 ########## Transdecoder ##########
 #samples_transdecoder: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883','at9900', 'col0']
 #samples_transdecoder: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883','at9900']
-samples_transdecoder: ['at6923','at6929','at7143','at8285','at9104','at9336','at9503','at9578','at9744','at9762','at9806','at9830','at9847','at9852','at9879','at9883']
+samples_transdecoder: ['at6923','at6929','at7143','at8285','at9104','at9336']

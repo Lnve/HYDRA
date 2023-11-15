@@ -141,7 +141,7 @@ rule pasa_alignment_tama:
         check="output/pasa/tama/{v}/{sample}_{tool}_pasa_{params}/alignment.done",
         idx_check="output/pasa/tama/{v}/{sample}_{tool}_pasa_{params}/idx_check.done"
     log:
-        config['workdir'] + "log/pasa/pasa_alignment_tama/{v}/{sample}.tama.{tool}.pasa_{params}.pasa_alignment_tama.{v}.log"
+        config['workdir'] + "/log/pasa/pasa_alignment_tama/{v}/{sample}.tama.{tool}.pasa_{params}.pasa_alignment_tama.{v}.log"
     params:
         dir="output/pasa/tama/{v}/{sample}_{tool}_pasa_{params}/",
         config="alignAssembly.config",
@@ -149,8 +149,9 @@ rule pasa_alignment_tama:
         fasta=config['workdir'] + "/output/isoform_generation/collapse_tama/{v}/{sample}.collapsed.tama.{v}.fasta",
         fasta_clean=config['workdir'] + "/output/isoform_generation/collapse_tama/{v}/{sample}.collapsed.tama.{v}.fasta.clean",
         aligners="blat,gmap,minimap2"
-    threads: 30
+    threads: 4
     priority: 70
+    retries: 10
     conda:      
         "envs/pasa.yml"
     benchmark:
@@ -175,7 +176,7 @@ rule pasa_alignment_pb:
     output:
         "output/pasa/pb/{v}/{sample}_{tool}_pasa_{params}/alignment.done"
     log:
-        config['workdir'] + "log/pasa/pasa_alignment_pb/{v}/{sample}.pb.{tool}.pasa_{params}.pasa_alignment_pb.{v}.log"
+        config['workdir'] + "/log/pasa/pasa_alignment_pb/{v}/{sample}.pb.{tool}.pasa_{params}.pasa_alignment_pb.{v}.log"
     params:
         dir="output/pasa/pb/{v}/{sample}_{tool}_pasa_{params}/",
         config="alignAssembly.config",
@@ -183,8 +184,9 @@ rule pasa_alignment_pb:
         fasta=config['workdir'] + "/output/isoform_generation/collapse_pb/{v}/{sample}.collapsed.pb.{v}.fasta",
         fasta_clean=config['workdir'] + "/output/isoform_generation/collapse_pb/{v}/{sample}.collapsed.pb.{v}.fasta.clean",
         aligners="blat,gmap,minimap2"
-    threads: 30
+    threads: 4
     priority: 65
+    retries: 10
     conda:      
         "envs/pasa.yml"
     benchmark:
@@ -206,7 +208,7 @@ rule pasa_load_anno1:
     output:
         "output/pasa/{run}/{v}/{sample}_{tool}_pasa_{params}/load1.done"
     log:
-        config['workdir'] + "log/pasa/pasa_load_anno1/{v}/{sample}.{run}.{tool}.pasa_{params}.pasa_load_anno1.{v}.log"
+        config['workdir'] + "/log/pasa/pasa_load_anno1/{v}/{sample}.{run}.{tool}.pasa_{params}.pasa_load_anno1.{v}.log"
     params:
         dir="output/pasa/{run}/{v}/{sample}_{tool}_pasa_{params}/",
         config="alignAssembly.config",
@@ -233,13 +235,13 @@ rule pasa_compare_anno1:
     output:
         "output/pasa/{run}/{v}/{sample}_{tool}_pasa_{params}/compare1.done"
     log:
-        config['workdir'] + "log/pasa/pasa_compare_anno1/{v}/{sample}.{run}.{tool}.pasa_{params}.pasa_compare_anno1.{v}.log"
+        config['workdir'] + "/log/pasa/pasa_compare_anno1/{v}/{sample}.{run}.{tool}.pasa_{params}.pasa_compare_anno1.{v}.log"
     params:
         dir="output/pasa/{run}/{v}/{sample}_{tool}_pasa_{params}/",
         config="annotCompare.config",
         genome=config['workdir'] + "/" + config['ref_genomes'],
         fasta_clean=config['workdir'] + "/output/isoform_generation/collapse_{run}/{v}/{sample}.collapsed.{run}.{v}.fasta.clean"
-    threads: 15
+    threads: 4
     priority: 50
     conda:      
         "envs/pasa.yml"

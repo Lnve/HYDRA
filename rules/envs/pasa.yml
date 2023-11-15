@@ -8,3 +8,4 @@ dependencies:
   - pasa
   - agat
   - gmap
+  - pandas
