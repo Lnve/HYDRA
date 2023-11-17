@@ -16,8 +16,6 @@ The tool transdecoder [Transdecoder](https://github.com/TransDecoder/TransDecode
 # How to install
 To run the pipeline, create a snakemake 7 environment: ```mamba create -n snakemake7 snakemake=7.22 python=3.11``` (Make sure, mamba is installed)\
 Activate it using ```mamba activate snakemake7```\
-All packages for the Isoform identification, PASA and Transdecoder will be installed automatically.\
-For Sqanti, follow the official [installation instructions](https://github.com/ConesaLab/SQANTI3/wiki/Dependencies-and-installation).
 
 Download the tarball. In this case, only unpack it and run the pipeline through this command: ```snakemake -j N --use-conda``` (MAKE TARBALL MAIN INSTALLATION, ADD COMMAND TO UNZIP ```tar -xzvf TARBALL```)
 update tarball with pandas
@@ -25,8 +23,6 @@ update tarball with pandas
 And last, specify the paths to required input files for the different steps of the pipeline. This is done via the config file
 add note, that installation takes a bit the first time, because of installing conda environments (as told by Snakemake in the terminal)
 add note, that the additional environments are installed (64200 files, 2.5Gb space)
-
-add a path to subreads and demultiplexed concatenated read files.
 
 # Config file
 The main configurations of all inputs and the main analysis tools are defined via a config file (```config_template.yaml```). An example is provided in the ```config_template_example.yaml```.
@@ -38,6 +34,15 @@ The main configurations of all inputs and the main analysis tools are defined vi
   - ```name2bc```: is a list of dictionaries. Each dictionary represents a pool (in the order defined in ```pools```) and maps the sample ID to their repsective barcode used in the SMRT-cell run.
 
 ### General input files
+Paths to SMRTcells:\
+/ebio/abt6_projects7/dliso/dlis/input/smrtcell/1_A01/
+/ebio/abt6_projects7/dliso/dlis/input/smrtcell/2_B01/
+/ebio/abt6_projects7/dliso/dlis/input/smrtcell/3_C01/
+/ebio/abt6_projects7/dliso/dlis/input/run2/1_A01/
+
+Path to demultiplexed and concatenated run files:
+/ebio/abt6_projects7/dliso/dlis/leon_pipeline/output/concat_samples/
+
   - ```ref_genomes```: path to reference genomes using the ```{sample}``` pattern specified in the general setup (required in all steps)
   - ```ref_annotations```: path to reference annotations. required patterns are ```{sample}``` (corresponding to the ones specified in the general setup as well as their reference genomes) and ```{tool}```, defining one or more techiques which were used to generate the respective reference annotation type. This allows to run follow up analyses with different reference analyses (used in follow up 1 and 2). Even if only one annotation type is present, a general pattern has to be chosen here.
   - ```barcodes```: barcode file, defining the sequences of 5' and 3' barcoded primers in fasta format. See the [PacBio CLI-workflow]https://isoseq.how/clustering/cli-workflow.html) for more details (required in the initial Isoform identification)
